@@ -4,8 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>THEUGRAPHY MEDIA | Premium Visual Storytelling</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+    
+    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <style>
         * {
             margin: 0;
@@ -57,19 +63,22 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
+            padding: 15px 20px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #FFFFFF;
+        .logo-img {
+            height: 45px;
+            width: auto;
+            display: block;
         }
 
-        .logo span {
-            color: #D4AF37;
+        /* High-res displays (Retina) for nav */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .logo-img {
+                content: url('images/logo-white@2x.png');
+            }
         }
 
         .nav-links {
@@ -81,6 +90,7 @@
             color: #FFFFFF;
             text-decoration: none;
             transition: color 0.3s;
+            font-weight: 500;
         }
 
         .nav-links a:hover {
@@ -307,6 +317,25 @@
             cursor: pointer;
         }
 
+        /* Footer Logo */
+        .footer-logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo-img {
+            height: 40px;
+            width: auto;
+            opacity: 0.8;
+        }
+
+        /* High-res footer logo */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .footer-logo-img {
+                content: url('images/logo-footer@2x.png');
+            }
+        }
+
         footer {
             background: #111;
             padding: 30px;
@@ -326,8 +355,9 @@
                 background: #1A1A1A;
                 padding: 20px;
                 position: absolute;
-                top: 60px;
+                top: 70px;
                 left: 0;
+                text-align: center;
             }
             .nav-links.active {
                 display: flex;
@@ -338,6 +368,12 @@
             .hero h1 {
                 font-size: 1.8rem;
             }
+            .logo-img {
+                height: 35px;
+            }
+            .footer-logo-img {
+                height: 35px;
+            }
         }
     </style>
 </head>
@@ -345,7 +381,9 @@
 
 <header>
     <div class="nav-container">
-        <div class="logo">THEUGRAPHY <span>MEDIA</span></div>
+        <a href="#home">
+            <img src="images/logo-white.png" alt="THEUGRAPHY MEDIA" class="logo-img">
+        </a>
         <div class="menu-toggle" id="mobile-menu">
             <i class="fas fa-bars"></i>
         </div>
@@ -362,7 +400,7 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="container">
-            <div class="hero-tagline">Turning Pictures Into Moments.</div>
+            <div class="hero-tagline">pictures to moments</div>
             <h1>Premium Visual Storytelling for Brands, Businesses, Events & People.</h1>
             <p class="hero-desc">Photography | Videography | Livestreams | Documentary Production</p>
             <div class="hero-buttons">
@@ -490,6 +528,9 @@
 
 <footer>
     <div class="container">
+        <div class="footer-logo">
+            <img src="images/logo-footer.png" alt="THEUGRAPHY MEDIA" class="footer-logo-img">
+        </div>
         <p>&copy; 2026 THEUGRAPHY MEDIA. Premium Visual Storytelling. All rights reserved.</p>
     </div>
 </footer>
@@ -513,6 +554,14 @@
                 e.preventDefault();
                 target.scrollIntoView({ behavior: 'smooth' });
             }
+        });
+    });
+
+    // Close mobile menu when clicking a link
+    const navLinkItems = document.querySelectorAll('.nav-links a');
+    navLinkItems.forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
         });
     });
 

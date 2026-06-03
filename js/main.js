@@ -96,11 +96,9 @@
 
     window.addEventListener('scroll', function() {
         if (window.scrollY > 100) {
-            header.style.padding = '0';
-            header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.3)';
+            header.classList.add('scrolled');
         } else {
-            header.style.padding = '';
-            header.style.boxShadow = '';
+            header.classList.remove('scrolled');
         }
     });
 
@@ -248,23 +246,10 @@
         const msgDiv = document.createElement('div');
         msgDiv.className = 'form-message ' + type;
         msgDiv.textContent = message;
-        msgDiv.style.marginTop = '16px';
-        msgDiv.style.padding = '12px';
-        msgDiv.style.borderRadius = '8px';
-        msgDiv.style.fontSize = '0.9rem';
         
-        if (type === 'success') {
-            msgDiv.style.backgroundColor = '#D4AF37';
-            msgDiv.style.color = '#1A1A1A';
-        } else {
-            msgDiv.style.backgroundColor = '#3A1A1A';
-            msgDiv.style.color = '#D4AF37';
-            msgDiv.style.border = '1px solid #D4AF37';
-        }
-        
-        const form = document.querySelector('.contact-form');
-        if (form) {
-            form.appendChild(msgDiv);
+        const formContainer = document.querySelector('.contact-form');
+        if (formContainer) {
+            formContainer.appendChild(msgDiv);
         }
         
         // Auto-remove after 5 seconds
@@ -279,7 +264,10 @@
     const allImages = document.querySelectorAll('img');
     
     allImages.forEach(function(img) {
-        img.setAttribute('loading', 'lazy');
+        // Skip logos if you want them to load immediately
+        if (!img.src.includes('logo')) {
+            img.setAttribute('loading', 'lazy');
+        }
     });
 
     // ============================================

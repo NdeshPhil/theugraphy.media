@@ -38,6 +38,12 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
+    transition: all 0.3s ease;
+}
+
+header.scrolled {
+    padding: 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
 .nav-container {
@@ -72,10 +78,25 @@ header {
     text-decoration: none;
     transition: color 0.3s;
     font-weight: 500;
+    position: relative;
 }
 
 .nav-links a:hover {
     color: #D4AF37;
+}
+
+.nav-links a.active {
+    color: #D4AF37;
+}
+
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #D4AF37;
 }
 
 .menu-toggle {
@@ -102,6 +123,7 @@ header {
 
 .btn-primary:hover {
     background: #B8960F;
+    transform: translateY(-2px);
 }
 
 .btn-outline {
@@ -113,6 +135,7 @@ header {
 .btn-outline:hover {
     background: #D4AF37;
     color: #1A1A1A;
+    transform: translateY(-2px);
 }
 
 /* ===== HERO SECTION ===== */
@@ -135,6 +158,7 @@ header {
 .hero-desc {
     font-size: 1.1rem;
     margin-bottom: 30px;
+    color: #CCCCCC;
 }
 
 .hero-buttons {
@@ -189,6 +213,8 @@ header {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .detail-item {
@@ -453,6 +479,25 @@ button:hover {
     transform: translateY(-2px);
 }
 
+/* ===== FORM MESSAGE STYLES ===== */
+.form-message {
+    margin-top: 16px;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.form-message.success {
+    background-color: #D4AF37;
+    color: #1A1A1A;
+}
+
+.form-message.error {
+    background-color: #3A1A1A;
+    color: #D4AF37;
+    border: 1px solid #D4AF37;
+}
+
 /* ===== FOOTER ===== */
 .footer-logo {
     text-align: center;
@@ -480,6 +525,18 @@ footer {
     color: #888;
 }
 
+/* ===== FADE-UP ANIMATION ===== */
+.fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
     .menu-toggle {
@@ -503,6 +560,10 @@ footer {
         display: flex;
     }
     
+    .nav-links a.active::after {
+        display: none;
+    }
+    
     .contact-grid {
         grid-template-columns: 1fr;
     }
@@ -514,6 +575,7 @@ footer {
     .detail-strip {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
+        max-width: 400px;
     }
     
     .video-modal iframe {
@@ -532,11 +594,30 @@ footer {
         height: 200px;
     }
     
-    .section-title {
+    h2 {
         font-size: 1.5rem;
     }
     
-    h2 {
-        font-size: 1.5rem;
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .services-grid {
+        gap: 15px;
+    }
+    
+    .portfolio-grid {
+        gap: 15px;
+    }
+}
+
+/* ===== TABLET RESPONSIVE ===== */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .detail-strip {
+        max-width: 700px;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
 }

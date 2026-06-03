@@ -1,6 +1,6 @@
 /**
  * THEUGRAPHY MEDIA - Main JavaScript
- * Interactions: Mobile menu, smooth scrolling, form placeholder handling, scroll effects
+ * Features: Mobile menu, smooth scrolling, active nav, video modal, form handler, scroll effects
  */
 
 (function() {
@@ -15,7 +15,6 @@
     if (menuToggle && navLinks) {
         menuToggle.addEventListener('click', function() {
             navLinks.classList.toggle('active');
-            // Toggle between hamburger and close icon
             const icon = menuToggle.querySelector('i');
             if (icon) {
                 if (navLinks.classList.contains('active')) {
@@ -28,7 +27,7 @@
             }
         });
 
-        // Close mobile menu when a link is clicked
+        // Close mobile menu when clicking a link
         const links = navLinks.querySelectorAll('a');
         links.forEach(function(link) {
             link.addEventListener('click', function() {
@@ -49,7 +48,6 @@
         anchor.addEventListener('click', function(e) {
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
-            
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
                 e.preventDefault();
@@ -57,6 +55,8 @@
                     behavior: 'smooth',
                     block: 'start'
                 });
+                // Update URL without jumping
+                history.pushState(null, null, targetId);
             }
         });
     });
@@ -86,8 +86,6 @@
         });
     }
 
-    // Add active class styling (add to CSS if desired)
-    // For now, just add the class - you can style .nav-links a.active in CSS
     window.addEventListener('scroll', highlightActiveNav);
     highlightActiveNav(); // Run once on load
 
@@ -95,34 +93,104 @@
     // HEADER SCROLL EFFECT (shrink on scroll)
     // ============================================
     const header = document.querySelector('header');
-    let lastScroll = 0;
 
     window.addEventListener('scroll', function() {
-        const currentScroll = window.pageYOffset;
-        
-        if (currentScroll > 100) {
+        if (window.scrollY > 100) {
             header.style.padding = '0';
             header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.3)';
         } else {
             header.style.padding = '';
             header.style.boxShadow = '';
         }
-        
-        lastScroll = currentScroll;
     });
 
     // ============================================
-    // FORM SUBMISSION HANDLER (with basic validation)
+    // FADE-UP ANIMATION ON SCROLL
     // ============================================
-    const contactForm = document.querySelector('.contact-form form');
+    const fadeElements = document.querySelectorAll('.fade-up');
+
+    function checkFadeUp() {
+        fadeElements.forEach(function(element) {
+            const elementTop = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (elementTop < windowHeight - 100) {
+                element.classList.add('visible');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', checkFadeUp);
+    checkFadeUp();
+
+    // ============================================
+    // VIDEO MODAL FUNCTIONALITY (YouTube)
+    // ============================================
+    const videoTrigger = document.getElementById('videoTrigger');
+    const videoModal = document.getElementById('videoModal');
+    const closeModal = document.getElementById('closeModal');
+    const youtubeVideo = document.getElementById('youtubeVideo');
+    
+    let videoSrc = '';
+    if (youtubeVideo) {
+        videoSrc = youtubeVideo.src;
+    }
+
+    if (videoTrigger && videoModal) {
+        videoTrigger.addEventListener('click', function() {
+            videoModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            if (youtubeVideo) {
+                youtubeVideo.src = videoSrc + "&autoplay=1";
+            }
+        });
+    }
+
+    if (closeModal) {
+        closeModal.addEventListener('click', function() {
+            videoModal.style.display = 'none';
+            document.body.style.overflow = ''; // Restore scrolling
+            if (youtubeVideo) {
+                youtubeVideo.src = videoSrc;
+            }
+        });
+    }
+
+    if (videoModal) {
+        videoModal.addEventListener('click', function(e) {
+            if (e.target === videoModal) {
+                videoModal.style.display = 'none';
+                document.body.style.overflow = '';
+                if (youtubeVideo) {
+                    youtubeVideo.src = videoSrc;
+                }
+            }
+        });
+    }
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && videoModal && videoModal.style.display === 'flex') {
+            videoModal.style.display = 'none';
+            document.body.style.overflow = '';
+            if (youtubeVideo) {
+                youtubeVideo.src = videoSrc;
+            }
+        }
+    });
+
+    // ============================================
+    // FORM SUBMISSION HANDLER (with validation)
+    // ============================================
+    const contactForm = document.getElementById('contactForm');
     
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const nameInput = this.querySelector('input[placeholder="Your Name"]');
-            const emailInput = this.querySelector('input[placeholder="Email Address"]');
-            const messageInput = this.querySelector('textarea');
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const messageInput = document.getElementById('message');
             
             let isValid = true;
             let errorMessage = '';
@@ -162,14 +230,8 @@
             }
             
             // If valid, show success message
-            // Note: Actual form sending requires backend or service like Formspree
             showFormMessage('Thank you! We will get back to you shortly.', 'success');
-            this.reset();
-            
-            // Remove border colors after reset
-            nameInput.style.borderColor = '#3A3A3A';
-            emailInput.style.borderColor = '#3A3A3A';
-            messageInput.style.borderColor = '#3A3A3A';
+            contactForm.reset();
         });
     }
     
@@ -184,7 +246,7 @@
         if (existingMsg) existingMsg.remove();
         
         const msgDiv = document.createElement('div');
-        msgDiv.className = 'form-message';
+        msgDiv.className = 'form-message ' + type;
         msgDiv.textContent = message;
         msgDiv.style.marginTop = '16px';
         msgDiv.style.padding = '12px';
@@ -200,8 +262,10 @@
             msgDiv.style.border = '1px solid #D4AF37';
         }
         
-        const form = document.querySelector('.contact-form form');
-        form.appendChild(msgDiv);
+        const form = document.querySelector('.contact-form');
+        if (form) {
+            form.appendChild(msgDiv);
+        }
         
         // Auto-remove after 5 seconds
         setTimeout(function() {
@@ -210,68 +274,29 @@
     }
 
     // ============================================
-    // LAZY LOAD PLACEHOLDER FOR IMAGES
-    // (Prepares for when you add actual images)
+    // LAZY LOAD PREPARATION FOR IMAGES
     // ============================================
-    const imagePlaceholders = document.querySelectorAll('.hero-image, .portfolio-image');
+    const allImages = document.querySelectorAll('img');
     
-    imagePlaceholders.forEach(function(placeholder) {
-        // Add a subtle fade-in effect when images are eventually added
-        placeholder.style.transition = 'opacity 0.5s ease';
+    allImages.forEach(function(img) {
+        img.setAttribute('loading', 'lazy');
     });
-    
-    // Helper function to replace placeholder with actual image
-    window.replaceImage = function(element, imageUrl, altText) {
-        if (element) {
-            const img = document.createElement('img');
-            img.src = imageUrl;
-            img.alt = altText || 'THEUGRAPHY Media visual';
-            img.style.width = '100%';
-            img.style.height = '100%';
-            img.style.objectFit = 'cover';
-            img.style.borderRadius = 'inherit';
-            element.innerHTML = '';
-            element.appendChild(img);
-        }
-    };
 
     // ============================================
-    // ADD SCROLL REVEAL EFFECT (optional)
+    // ADD CSS CLASS FOR FADE-IN EFFECT
+    // Add these styles to your CSS if you want the scroll reveal effect:
+    // 
+    // .fade-up {
+    //     opacity: 0;
+    //     transform: translateY(30px);
+    //     transition: opacity 0.6s ease, transform 0.6s ease;
+    // }
+    // 
+    // .fade-up.visible {
+    //     opacity: 1;
+    //     transform: translateY(0);
+    // }
     // ============================================
-    const revealElements = document.querySelectorAll('.service-card, .why-item, .step, .portfolio-item, .team-card');
-    
-    function checkReveal() {
-        const windowHeight = window.innerHeight;
-        const revealPoint = 150;
-        
-        revealElements.forEach(function(element) {
-            const elementTop = element.getBoundingClientRect().top;
-            
-            if (elementTop < windowHeight - revealPoint) {
-                element.classList.add('revealed');
-            }
-        });
-    }
-    
-    // Add CSS class for fade-in effect (add to your CSS if desired)
-    // For now, just add the class - you can style .service-card.revealed in CSS
-    window.addEventListener('scroll', checkReveal);
-    checkReveal();
 
+    console.log('THEUGRAPHY MEDIA website loaded successfully');
 })();
-
-// ============================================
-// ADD THESE STYLES TO YOUR style.css IF YOU WANT THE SCROLL REVEAL EFFECT
-// 
-// .service-card, .why-item, .step, .portfolio-item, .team-card {
-//     opacity: 0;
-//     transform: translateY(30px);
-//     transition: opacity 0.6s ease, transform 0.6s ease;
-// }
-// 
-// .service-card.revealed, .why-item.revealed, .step.revealed, 
-// .portfolio-item.revealed, .team-card.revealed {
-//     opacity: 1;
-//     transform: translateY(0);
-// }
-// ============================================

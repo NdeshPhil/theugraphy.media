@@ -271,19 +271,10 @@
     });
 
     // ============================================
-    // ADD CSS CLASS FOR FADE-IN EFFECT
-    // Add these styles to your CSS if you want the scroll reveal effect:
-    // 
-    // .fade-up {
-    //     opacity: 0;
-    //     transform: translateY(30px);
-    //     transition: opacity 0.6s ease, transform 0.6s ease;
-    // }
-    // 
-    // .fade-up.visible {
-    //     opacity: 1;
-    //     transform: translateY(0);
-    // }
+    // INTERSECTION OBSERVER FOR SECTIONS (Optional enhancement)
+    // ============================================
+    // This ensures sections are properly detected for active nav
+    // even if they are not in the initial viewport.
     // ============================================
 
     console.log('THEUGRAPHY MEDIA website loaded successfully');

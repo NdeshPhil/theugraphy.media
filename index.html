@@ -31,7 +31,7 @@
 </header>
 
 <main>
-    <!-- Hero Section with Slideshow -->
+    <!-- Hero Section with Video Only -->
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-tagline">pictures to moments</div>
@@ -42,28 +42,12 @@
                 <a href="#contact" class="btn btn-outline">Book a Consultation</a>
             </div>
             <div class="hero-slideshow">
-                <!-- Slide 1: Photo -->
-                <div class="slide active" style="background-image: url('images/hero-event.jpg');">
-                    <div class="slide-overlay"></div>
-                </div>
-                <!-- Slide 2: Photo -->
-                <div class="slide" style="background-image: url('images/portfolio-1.jpg');">
-                    <div class="slide-overlay"></div>
-                </div>
-                <!-- Slide 3: Video -->
-                <div class="slide video-slide">
+                <div class="slide active video-slide">
                     <video autoplay muted loop playsinline>
                         <source src="images/hero-slide-video.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     <div class="slide-overlay"></div>
-                </div>
-                <button class="slide-btn prev" id="prevSlide"><i class="fas fa-chevron-left"></i></button>
-                <button class="slide-btn next" id="nextSlide"><i class="fas fa-chevron-right"></i></button>
-                <div class="slide-dots">
-                    <span class="dot active" data-index="0"></span>
-                    <span class="dot" data-index="1"></span>
-                    <span class="dot" data-index="2"></span>
                 </div>
             </div>
         </div>

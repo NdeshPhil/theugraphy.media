@@ -31,7 +31,7 @@
 </header>
 
 <main>
-    <!-- Hero Section -->
+    <!-- Hero Section with Slideshow -->
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-tagline">pictures to moments</div>
@@ -41,8 +41,30 @@
                 <a href="#portfolio" class="btn btn-primary">View Portfolio</a>
                 <a href="#contact" class="btn btn-outline">Book a Consultation</a>
             </div>
-            <div class="hero-image">
-                <img src="images/hero-event.jpg" alt="Corporate event photography by THEUGRAPHY MEDIA">
+            <div class="hero-slideshow">
+                <!-- Slide 1: Photo -->
+                <div class="slide active" style="background-image: url('images/hero-event.jpg');">
+                    <div class="slide-overlay"></div>
+                </div>
+                <!-- Slide 2: Photo -->
+                <div class="slide" style="background-image: url('images/portfolio-1.jpg');">
+                    <div class="slide-overlay"></div>
+                </div>
+                <!-- Slide 3: Video -->
+                <div class="slide video-slide">
+                    <video autoplay muted loop playsinline>
+                        <source src="images/hero-slide-video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="slide-overlay"></div>
+                </div>
+                <button class="slide-btn prev" id="prevSlide"><i class="fas fa-chevron-left"></i></button>
+                <button class="slide-btn next" id="nextSlide"><i class="fas fa-chevron-right"></i></button>
+                <div class="slide-dots">
+                    <span class="dot active" data-index="0"></span>
+                    <span class="dot" data-index="1"></span>
+                    <span class="dot" data-index="2"></span>
+                </div>
             </div>
         </div>
     </section>
@@ -180,25 +202,42 @@
         </div>
     </section>
 
-    <!-- Portfolio -->
+    <!-- Portfolio with Lightbox Galleries -->
     <section id="portfolio" class="portfolio-section">
         <div class="container">
             <h2>Recent Work</h2>
-            <p style="text-align: center; margin-bottom: 40px;">Finished photography and video from our corporate clients</p>
+            <p style="text-align: center; margin-bottom: 40px;">Explore our featured projects and galleries</p>
             <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <div class="portfolio-image"><img src="images/portfolio-1.jpg" alt="Corporate event final photo"></div>
+                <!-- Annual Conference Gallery (12 photos) -->
+                <div class="portfolio-item gallery-trigger" data-gallery="annual">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio-1.jpg" alt="Annual Conference">
+                        <div class="gallery-icon">
+                            <i class="fas fa-images"></i>
+                            <span>12 Photos</span>
+                        </div>
+                    </div>
                     <h4>Annual Conference</h4>
-                    <p>Photography</p>
+                    <p>View Gallery <i class="fas fa-arrow-right"></i></p>
                 </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-image"><img src="images/portfolio-2.jpg" alt="Brand documentary still"></div>
+
+                <!-- Brand Documentary Gallery (12 square photos) -->
+                <div class="portfolio-item gallery-trigger" data-gallery="documentary">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio-2.jpg" alt="Brand Documentary">
+                        <div class="gallery-icon">
+                            <i class="fas fa-images"></i>
+                            <span>12 Photos</span>
+                        </div>
+                    </div>
                     <h4>Brand Documentary</h4>
-                    <p>Videography</p>
+                    <p>View Gallery <i class="fas fa-arrow-right"></i></p>
                 </div>
+
+                <!-- Documentary Film (Video) -->
                 <div class="portfolio-item" id="videoTrigger">
                     <div class="portfolio-image">
-                        <img src="images/portfolio-3.jpg" alt="Documentary thumbnail - click to watch">
+                        <img src="images/portfolio-3.jpg" alt="Documentary Film - click to watch">
                         <div class="play-overlay">
                             <i class="fas fa-play"></i>
                         </div>
@@ -206,16 +245,40 @@
                     <h4>Documentary Film</h4>
                     <p>Watch Now <i class="fas fa-arrow-right"></i></p>
                 </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-image"><img src="images/portfolio-4.jpg" alt="Executive portrait"></div>
+
+                <!-- Executive Session Gallery (3 photos) -->
+                <div class="portfolio-item gallery-trigger" data-gallery="executive">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio-4.jpg" alt="Executive Session">
+                        <div class="gallery-icon">
+                            <i class="fas fa-images"></i>
+                            <span>3 Photos</span>
+                        </div>
+                    </div>
                     <h4>Executive Session</h4>
-                    <p>Photography</p>
+                    <p>View Gallery <i class="fas fa-arrow-right"></i></p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Video Modal -->
+    <!-- Lightbox Modal -->
+    <div id="lightboxModal" class="lightbox-modal">
+        <div class="lightbox-content">
+            <span class="lightbox-close" id="closeLightbox">&times;</span>
+            <div class="lightbox-slider" id="lightboxSlider">
+                <button class="lightbox-arrow lightbox-prev" id="lightboxPrev"><i class="fas fa-chevron-left"></i></button>
+                <button class="lightbox-arrow lightbox-next" id="lightboxNext"><i class="fas fa-chevron-right"></i></button>
+                <div class="lightbox-image-container" id="lightboxContainer">
+                    <img src="" alt="Gallery image" id="lightboxImage">
+                </div>
+            </div>
+            <div class="lightbox-counter" id="lightboxCounter"></div>
+            <div class="lightbox-thumbnails" id="lightboxThumbnails"></div>
+        </div>
+    </div>
+
+    <!-- Video Modal (YouTube) -->
     <div id="videoModal" class="video-modal">
         <div class="video-modal-content">
             <span id="closeModal" class="close-modal">&times;</span>
@@ -229,7 +292,6 @@
             <h2>Testimonials</h2>
             <p style="text-align: center; margin-bottom: 40px;">Real feedback from organizations we've worked with</p>
             <div class="testimonials-grid">
-                <!-- Reordered: tall screenshots first, wide one second -->
                 <div class="testimonial-card">
                     <img src="images/testimonial-2.jpg" alt="Client testimonial">
                 </div>

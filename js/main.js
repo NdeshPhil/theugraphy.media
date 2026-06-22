@@ -93,6 +93,24 @@
     });
 
     // ============================================
+    // FADE-UP ANIMATION ON SCROLL
+    // ============================================
+    var fadeElements = document.querySelectorAll('.fade-up');
+
+    function checkFadeUp() {
+        fadeElements.forEach(function(element) {
+            var elementTop = element.getBoundingClientRect().top;
+            var windowHeight = window.innerHeight;
+            if (elementTop < windowHeight - 100) {
+                element.classList.add('visible');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', checkFadeUp);
+    checkFadeUp();
+
+    // ============================================
     // VIDEO MODAL (YouTube)
     // ============================================
     var videoTrigger = document.getElementById('videoTrigger');
@@ -160,7 +178,6 @@
         var currentIndex = 0;
         var currentGallery = [];
 
-        // Gallery data
         var galleries = {
             'annual': {
                 images: [],
@@ -182,7 +199,6 @@
             }
         };
 
-        // Build image paths
         Object.keys(galleries).forEach(function(key) {
             var g = galleries[key];
             for (var i = 1; i <= g.count; i++) {
@@ -207,7 +223,6 @@
             lightboxImage.alt = 'Gallery image ' + (currentIndex + 1);
             lightboxCounter.textContent = (currentIndex + 1) + ' / ' + currentGallery.length;
 
-            // Thumbnails
             lightboxThumbnails.innerHTML = '';
             currentGallery.forEach(function(src, i) {
                 var thumb = document.createElement('img');
@@ -241,7 +256,6 @@
             document.body.style.overflow = '';
         }
 
-        // Event listeners for gallery triggers
         var triggers = document.querySelectorAll('.gallery-trigger');
         triggers.forEach(function(trigger) {
             trigger.addEventListener('click', function() {
@@ -262,7 +276,6 @@
             nextBtn.addEventListener('click', nextImage);
         }
 
-        // Keyboard navigation
         document.addEventListener('keydown', function(e) {
             if (!lightboxModal.classList.contains('active')) return;
             if (e.key === 'Escape') {

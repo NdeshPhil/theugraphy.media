@@ -31,7 +31,7 @@
 </header>
 
 <main>
-    <!-- Hero Section with Video Only -->
+    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-tagline">pictures to moments</div>
@@ -186,13 +186,13 @@
         </div>
     </section>
 
-    <!-- Portfolio with Lightbox Galleries -->
+    <!-- Portfolio -->
     <section id="portfolio" class="portfolio-section">
         <div class="container">
             <h2>Recent Work</h2>
             <p style="text-align: center; margin-bottom: 40px;">Explore our featured projects and galleries</p>
             <div class="portfolio-grid">
-                <!-- Annual Conference Gallery (12 photos) -->
+                <!-- Annual Conference Gallery -->
                 <div class="portfolio-item gallery-trigger" data-gallery="annual">
                     <div class="portfolio-image">
                         <img src="images/portfolio-1.jpg" alt="Annual Conference">
@@ -205,7 +205,7 @@
                     <p>View Gallery <i class="fas fa-arrow-right"></i></p>
                 </div>
 
-                <!-- Brand Documentary Gallery (12 square photos) -->
+                <!-- Brand Documentary Gallery -->
                 <div class="portfolio-item gallery-trigger" data-gallery="documentary">
                     <div class="portfolio-image">
                         <img src="images/portfolio-2.jpg" alt="Brand Documentary">
@@ -218,19 +218,19 @@
                     <p>View Gallery <i class="fas fa-arrow-right"></i></p>
                 </div>
 
-                <!-- Documentary Film (Video) -->
-                <div class="portfolio-item" id="videoTrigger">
+                <!-- Documentary Film (KENTEGRA) -->
+                <div class="portfolio-item" id="videoTrigger1">
                     <div class="portfolio-image">
-                        <img src="images/portfolio-3.jpg" alt="Documentary Film - click to watch">
+                        <img src="images/portfolio-3.jpg" alt="KENTEGRA Mini Documentary">
                         <div class="play-overlay">
                             <i class="fas fa-play"></i>
                         </div>
                     </div>
-                    <h4>Documentary Film</h4>
+                    <h4>KENTEGRA Documentary</h4>
                     <p>Watch Now <i class="fas fa-arrow-right"></i></p>
                 </div>
 
-                <!-- Executive Session Gallery (3 photos) -->
+                <!-- Executive Session Gallery -->
                 <div class="portfolio-item gallery-trigger" data-gallery="executive">
                     <div class="portfolio-image">
                         <img src="images/portfolio-4.jpg" alt="Executive Session">
@@ -241,6 +241,42 @@
                     </div>
                     <h4>Executive Session</h4>
                     <p>View Gallery <i class="fas fa-arrow-right"></i></p>
+                </div>
+
+                <!-- Corporate Highlight Video -->
+                <div class="portfolio-item" id="videoTrigger2">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio-2.jpg" alt="Corporate Highlight">
+                        <div class="play-overlay">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <h4>Corporate Highlight</h4>
+                    <p>Watch Now <i class="fas fa-arrow-right"></i></p>
+                </div>
+
+                <!-- ESK Highlight Video -->
+                <div class="portfolio-item" id="videoTrigger3">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio-1.jpg" alt="ESK Highlight">
+                        <div class="play-overlay">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <h4>ESK Highlight</h4>
+                    <p>Watch Now <i class="fas fa-arrow-right"></i></p>
+                </div>
+
+                <!-- Team Building Highlight Video -->
+                <div class="portfolio-item" id="videoTrigger4">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio-4.jpg" alt="Team Building Highlight">
+                        <div class="play-overlay">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <h4>Team Building Highlight</h4>
+                    <p>Watch Now <i class="fas fa-arrow-right"></i></p>
                 </div>
             </div>
         </div>
@@ -262,11 +298,36 @@
         </div>
     </div>
 
-    <!-- Video Modal (YouTube) -->
-    <div id="videoModal" class="video-modal">
+    <!-- Video Modals -->
+    <!-- Video 1: KENTEGRA Documentary -->
+    <div id="videoModal1" class="video-modal">
         <div class="video-modal-content">
-            <span id="closeModal" class="close-modal">&times;</span>
-            <iframe id="youtubeVideo" src="https://www.youtube.com/embed/stLHM4Wmj_c?autoplay=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <span class="close-modal" data-modal="videoModal1">&times;</span>
+            <iframe id="youtubeVideo1" width="100%" height="450" src="https://www.youtube.com/embed/Gv7PAIiIeOA?autoplay=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- Video 2: Corporate Highlight -->
+    <div id="videoModal2" class="video-modal">
+        <div class="video-modal-content">
+            <span class="close-modal" data-modal="videoModal2">&times;</span>
+            <iframe id="youtubeVideo2" width="100%" height="450" src="https://www.youtube.com/embed/XlVTmvnbDWw?autoplay=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- Video 3: ESK Highlight -->
+    <div id="videoModal3" class="video-modal">
+        <div class="video-modal-content">
+            <span class="close-modal" data-modal="videoModal3">&times;</span>
+            <iframe id="youtubeVideo3" width="100%" height="450" src="https://www.youtube.com/embed/KOs6C4nyJjY?autoplay=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- Video 4: Team Building Highlight -->
+    <div id="videoModal4" class="video-modal">
+        <div class="video-modal-content">
+            <span class="close-modal" data-modal="videoModal4">&times;</span>
+            <iframe id="youtubeVideo4" width="100%" height="450" src="https://www.youtube.com/embed/iTrH0mTmGAo?autoplay=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </div>
 
@@ -384,6 +445,400 @@
     </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script>
+(function() {
+    'use strict';
+
+    // ============================================
+    // MOBILE MENU TOGGLE
+    // ============================================
+    var menuToggle = document.getElementById('mobile-menu');
+    var navLinks = document.getElementById('nav-links');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            var icon = menuToggle.querySelector('i');
+            if (icon) {
+                if (navLinks.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        });
+
+        var links = navLinks.querySelectorAll('a');
+        links.forEach(function(link) {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+                var icon = menuToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+    }
+
+    // ============================================
+    // SMOOTH SCROLLING
+    // ============================================
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+        anchor.addEventListener('click', function(e) {
+            var targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            var targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                e.preventDefault();
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                history.pushState(null, null, targetId);
+            }
+        });
+    });
+
+    // ============================================
+    // ACTIVE NAV HIGHLIGHT
+    // ============================================
+    var sections = document.querySelectorAll('section[id]');
+    var navItems = document.querySelectorAll('.nav-links a');
+
+    function highlightActiveNav() {
+        var scrollPosition = window.scrollY + 150;
+        sections.forEach(function(section) {
+            var sectionTop = section.offsetTop;
+            var sectionBottom = sectionTop + section.offsetHeight;
+            var sectionId = section.getAttribute('id');
+            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                navItems.forEach(function(item) {
+                    item.classList.remove('active');
+                    if (item.getAttribute('href') === '#' + sectionId) {
+                        item.classList.add('active');
+                    }
+                });
+            }
+        });
+    }
+
+    window.addEventListener('scroll', highlightActiveNav);
+    highlightActiveNav();
+
+    // ============================================
+    // HEADER SCROLL EFFECT
+    // ============================================
+    var header = document.querySelector('header');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 100) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    // ============================================
+    // FADE-UP ANIMATION
+    // ============================================
+    var fadeElements = document.querySelectorAll('.fade-up');
+
+    function checkFadeUp() {
+        fadeElements.forEach(function(element) {
+            var elementTop = element.getBoundingClientRect().top;
+            var windowHeight = window.innerHeight;
+            if (elementTop < windowHeight - 100) {
+                element.classList.add('visible');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', checkFadeUp);
+    checkFadeUp();
+
+    // ============================================
+    // VIDEO MODALS (All 4 Videos)
+    // ============================================
+    var videoConfigs = [
+        { triggerId: 'videoTrigger1', modalId: 'videoModal1', videoId: 'youtubeVideo1' },
+        { triggerId: 'videoTrigger2', modalId: 'videoModal2', videoId: 'youtubeVideo2' },
+        { triggerId: 'videoTrigger3', modalId: 'videoModal3', videoId: 'youtubeVideo3' },
+        { triggerId: 'videoTrigger4', modalId: 'videoModal4', videoId: 'youtubeVideo4' }
+    ];
+
+    videoConfigs.forEach(function(config) {
+        var trigger = document.getElementById(config.triggerId);
+        var modal = document.getElementById(config.modalId);
+        var video = document.getElementById(config.videoId);
+        var closeBtn = modal ? modal.querySelector('.close-modal') : null;
+
+        if (trigger && modal && video) {
+            var videoSrc = video.src;
+
+            trigger.addEventListener('click', function() {
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                video.src = videoSrc + '&autoplay=1';
+            });
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function() {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = '';
+                    video.src = videoSrc;
+                });
+            }
+
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = '';
+                    video.src = videoSrc;
+                }
+            });
+        }
+    });
+
+    // Close modals with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            var openModals = document.querySelectorAll('.video-modal[style*="display: flex"]');
+            openModals.forEach(function(modal) {
+                var video = modal.querySelector('iframe');
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+                if (video) {
+                    var src = video.src.replace('&autoplay=1', '');
+                    video.src = src;
+                }
+            });
+        }
+    });
+
+    // ============================================
+    // LIGHTBOX GALLERY
+    // ============================================
+    (function() {
+        var lightboxModal = document.getElementById('lightboxModal');
+        var lightboxImage = document.getElementById('lightboxImage');
+        var lightboxCounter = document.getElementById('lightboxCounter');
+        var lightboxThumbnails = document.getElementById('lightboxThumbnails');
+        var closeLightbox = document.getElementById('closeLightbox');
+        var prevBtn = document.getElementById('lightboxPrev');
+        var nextBtn = document.getElementById('lightboxNext');
+        var currentIndex = 0;
+        var currentGallery = [];
+
+        var galleries = {
+            'annual': {
+                images: [],
+                count: 12,
+                prefix: 'annual-',
+                ext: '.jpg'
+            },
+            'documentary': {
+                images: [],
+                count: 12,
+                prefix: 'documentary-',
+                ext: '.jpg'
+            },
+            'executive': {
+                images: [],
+                count: 3,
+                prefix: 'executive-',
+                ext: '.jpg'
+            }
+        };
+
+        Object.keys(galleries).forEach(function(key) {
+            var g = galleries[key];
+            for (var i = 1; i <= g.count; i++) {
+                var num = i < 10 ? '0' + i : '' + i;
+                g.images.push('images/' + g.prefix + num + g.ext);
+            }
+        });
+
+        function openLightbox(galleryKey) {
+            var gallery = galleries[galleryKey];
+            if (!gallery) return;
+            currentGallery = gallery.images;
+            currentIndex = 0;
+            renderLightbox();
+            lightboxModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function renderLightbox() {
+            if (currentGallery.length === 0) return;
+            lightboxImage.src = currentGallery[currentIndex];
+            lightboxImage.alt = 'Gallery image ' + (currentIndex + 1);
+            lightboxCounter.textContent = (currentIndex + 1) + ' / ' + currentGallery.length;
+
+            lightboxThumbnails.innerHTML = '';
+            currentGallery.forEach(function(src, i) {
+                var thumb = document.createElement('img');
+                thumb.src = src;
+                thumb.alt = 'Thumbnail ' + (i + 1);
+                if (i === currentIndex) {
+                    thumb.classList.add('active-thumb');
+                }
+                thumb.addEventListener('click', function() {
+                    currentIndex = i;
+                    renderLightbox();
+                });
+                lightboxThumbnails.appendChild(thumb);
+            });
+        }
+
+        function nextImage() {
+            if (currentGallery.length === 0) return;
+            currentIndex = (currentIndex + 1) % currentGallery.length;
+            renderLightbox();
+        }
+
+        function prevImage() {
+            if (currentGallery.length === 0) return;
+            currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
+            renderLightbox();
+        }
+
+        function closeLightboxFn() {
+            lightboxModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        var triggers = document.querySelectorAll('.gallery-trigger');
+        triggers.forEach(function(trigger) {
+            trigger.addEventListener('click', function() {
+                var galleryKey = this.getAttribute('data-gallery');
+                openLightbox(galleryKey);
+            });
+        });
+
+        if (closeLightbox) {
+            closeLightbox.addEventListener('click', closeLightboxFn);
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', prevImage);
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', nextImage);
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (!lightboxModal.classList.contains('active')) return;
+            if (e.key === 'Escape') {
+                closeLightboxFn();
+            } else if (e.key === 'ArrowLeft') {
+                prevImage();
+            } else if (e.key === 'ArrowRight') {
+                nextImage();
+            }
+        });
+
+        if (lightboxModal) {
+            lightboxModal.addEventListener('click', function(e) {
+                if (e.target === lightboxModal) {
+                    closeLightboxFn();
+                }
+            });
+        }
+    })();
+
+    // ============================================
+    // FORM SUBMISSION HANDLER
+    // ============================================
+    var contactForm = document.getElementById('contactForm');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var nameInput = document.getElementById('name');
+            var emailInput = document.getElementById('email');
+            var messageInput = document.getElementById('message');
+
+            var isValid = true;
+            var errorMessage = '';
+
+            if (!nameInput.value.trim()) {
+                isValid = false;
+                errorMessage = 'Please enter your name.';
+                nameInput.style.borderColor = '#D4AF37';
+            } else {
+                nameInput.style.borderColor = '#3A3A3A';
+            }
+
+            if (!emailInput.value.trim()) {
+                isValid = false;
+                errorMessage = 'Please enter your email address.';
+                emailInput.style.borderColor = '#D4AF37';
+            } else if (!isValidEmail(emailInput.value.trim())) {
+                isValid = false;
+                errorMessage = 'Please enter a valid email address.';
+                emailInput.style.borderColor = '#D4AF37';
+            } else {
+                emailInput.style.borderColor = '#3A3A3A';
+            }
+
+            if (!messageInput.value.trim()) {
+                isValid = false;
+                errorMessage = 'Please enter your message.';
+                messageInput.style.borderColor = '#D4AF37';
+            } else {
+                messageInput.style.borderColor = '#3A3A3A';
+            }
+
+            if (!isValid) {
+                showFormMessage(errorMessage, 'error');
+                return;
+            }
+
+            showFormMessage('Thank you! We will get back to you shortly.', 'success');
+            contactForm.reset();
+        });
+    }
+
+    function isValidEmail(email) {
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    function showFormMessage(message, type) {
+        var existingMsg = document.querySelector('.form-message');
+        if (existingMsg) existingMsg.remove();
+
+        var msgDiv = document.createElement('div');
+        msgDiv.className = 'form-message ' + type;
+        msgDiv.textContent = message;
+
+        var formContainer = document.querySelector('.contact-form');
+        if (formContainer) {
+            formContainer.appendChild(msgDiv);
+        }
+
+        setTimeout(function() {
+            if (msgDiv) msgDiv.remove();
+        }, 5000);
+    }
+
+    // ============================================
+    // LAZY LOAD PREPARATION FOR IMAGES
+    // ============================================
+    var allImages = document.querySelectorAll('img');
+    allImages.forEach(function(img) {
+        if (!img.src.includes('logo')) {
+            img.setAttribute('loading', 'lazy');
+        }
+    });
+
+    console.log('THEUGRAPHY MEDIA website loaded successfully');
+
+})();
+</script>
 </body>
 </html>

@@ -93,7 +93,7 @@
     });
 
     // ============================================
-    // FADE-UP ANIMATION ON SCROLL
+    // FADE-UP ANIMATION
     // ============================================
     var fadeElements = document.querySelectorAll('.fade-up');
 
@@ -111,56 +111,61 @@
     checkFadeUp();
 
     // ============================================
-    // VIDEO MODAL (YouTube)
+    // VIDEO MODALS (All 4 Videos)
     // ============================================
-    var videoTrigger = document.getElementById('videoTrigger');
-    var videoModal = document.getElementById('videoModal');
-    var closeModal = document.getElementById('closeModal');
-    var youtubeVideo = document.getElementById('youtubeVideo');
-    var videoSrc = '';
-    if (youtubeVideo) {
-        videoSrc = youtubeVideo.src;
-    }
+    var videoConfigs = [
+        { triggerId: 'videoTrigger1', modalId: 'videoModal1', videoId: 'youtubeVideo1' },
+        { triggerId: 'videoTrigger2', modalId: 'videoModal2', videoId: 'youtubeVideo2' },
+        { triggerId: 'videoTrigger3', modalId: 'videoModal3', videoId: 'youtubeVideo3' },
+        { triggerId: 'videoTrigger4', modalId: 'videoModal4', videoId: 'youtubeVideo4' }
+    ];
 
-    if (videoTrigger && videoModal) {
-        videoTrigger.addEventListener('click', function() {
-            videoModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-            if (youtubeVideo) {
-                youtubeVideo.src = videoSrc + '&autoplay=1';
+    videoConfigs.forEach(function(config) {
+        var trigger = document.getElementById(config.triggerId);
+        var modal = document.getElementById(config.modalId);
+        var video = document.getElementById(config.videoId);
+        var closeBtn = modal ? modal.querySelector('.close-modal') : null;
+
+        if (trigger && modal && video) {
+            var videoSrc = video.src;
+
+            trigger.addEventListener('click', function() {
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                video.src = videoSrc + '&autoplay=1';
+            });
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function() {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = '';
+                    video.src = videoSrc;
+                });
             }
-        });
-    }
 
-    if (closeModal) {
-        closeModal.addEventListener('click', function() {
-            videoModal.style.display = 'none';
-            document.body.style.overflow = '';
-            if (youtubeVideo) {
-                youtubeVideo.src = videoSrc;
-            }
-        });
-    }
-
-    if (videoModal) {
-        videoModal.addEventListener('click', function(e) {
-            if (e.target === videoModal) {
-                videoModal.style.display = 'none';
-                document.body.style.overflow = '';
-                if (youtubeVideo) {
-                    youtubeVideo.src = videoSrc;
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = '';
+                    video.src = videoSrc;
                 }
-            }
-        });
-    }
+            });
+        }
+    });
 
+    // Close modals with Escape key
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && videoModal && videoModal.style.display === 'flex') {
-            videoModal.style.display = 'none';
-            document.body.style.overflow = '';
-            if (youtubeVideo) {
-                youtubeVideo.src = videoSrc;
-            }
+        if (e.key === 'Escape') {
+            var openModals = document.querySelectorAll('.video-modal[style*="display: flex"]');
+            openModals.forEach(function(modal) {
+                var video = modal.querySelector('iframe');
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+                if (video) {
+                    var src = video.src.replace('&autoplay=1', '');
+                    video.src = src;
+                }
+            });
         }
     });
 

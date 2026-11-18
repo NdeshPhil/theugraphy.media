@@ -2,7 +2,7 @@
     'use strict';
 
     // ============================================
-    // MOBILE MENU TOGGLE
+    // MOBILE MENU
     // ============================================
     var menuToggle = document.getElementById('mobile-menu');
     var navLinks = document.getElementById('nav-links');
@@ -47,7 +47,6 @@
         var interval = 5000;
         var timer = null;
 
-        // Build indicators
         slides.forEach(function(_, i) {
             var btn = document.createElement('button');
             btn.className = 'indicator' + (i === 0 ? ' active' : '');
@@ -69,24 +68,15 @@
             indicators[current].classList.add('active');
         }
 
-        function next() {
-            goTo(current + 1);
-        }
-
-        function startTimer() {
-            timer = setInterval(next, interval);
-        }
-
-        function restartTimer() {
-            clearInterval(timer);
-            startTimer();
-        }
+        function next() { goTo(current + 1); }
+        function startTimer() { timer = setInterval(next, interval); }
+        function restartTimer() { clearInterval(timer); startTimer(); }
 
         startTimer();
     })();
 
     // ============================================
-    // SMOOTH SCROLLING
+    // SMOOTH SCROLL
     // ============================================
     document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
         anchor.addEventListener('click', function(e) {
@@ -95,10 +85,7 @@
             var targetElement = document.querySelector(targetId);
             if (targetElement) {
                 e.preventDefault();
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 history.pushState(null, null, targetId);
             }
         });
@@ -143,7 +130,7 @@
     });
 
     // ============================================
-    // FADE-UP ANIMATION
+    // FADE-UP
     // ============================================
     var fadeElements = document.querySelectorAll('.fade-up');
 
@@ -203,7 +190,6 @@
         }
     });
 
-    // Close video modals with Escape
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             var openModals = document.querySelectorAll('.video-modal[style*="display: flex"]');
@@ -220,7 +206,7 @@
     });
 
     // ============================================
-    // LIGHTBOX GALLERY
+    // LIGHTBOX
     // ============================================
     (function() {
         var lightboxModal = document.getElementById('lightboxModal');
@@ -306,35 +292,26 @@
             });
         });
 
-        if (closeLightbox) {
-            closeLightbox.addEventListener('click', closeLightboxFn);
-        }
-
+        if (closeLightbox) closeLightbox.addEventListener('click', closeLightboxFn);
         if (prevBtn) prevBtn.addEventListener('click', prevImage);
         if (nextBtn) nextBtn.addEventListener('click', nextImage);
 
         document.addEventListener('keydown', function(e) {
             if (!lightboxModal.classList.contains('active')) return;
-            if (e.key === 'Escape') {
-                closeLightboxFn();
-            } else if (e.key === 'ArrowLeft') {
-                prevImage();
-            } else if (e.key === 'ArrowRight') {
-                nextImage();
-            }
+            if (e.key === 'Escape') closeLightboxFn();
+            else if (e.key === 'ArrowLeft') prevImage();
+            else if (e.key === 'ArrowRight') nextImage();
         });
 
         if (lightboxModal) {
             lightboxModal.addEventListener('click', function(e) {
-                if (e.target === lightboxModal) {
-                    closeLightboxFn();
-                }
+                if (e.target === lightboxModal) closeLightboxFn();
             });
         }
     })();
 
     // ============================================
-    // FORM SUBMISSION HANDLER
+    // CONTACT FORM
     // ============================================
     var contactForm = document.getElementById('contactForm');
 
@@ -350,32 +327,22 @@
             var errorMessage = '';
 
             if (!nameInput.value.trim()) {
-                isValid = false;
-                errorMessage = 'Please enter your name.';
+                isValid = false; errorMessage = 'Please enter your name.';
                 nameInput.style.borderColor = '#D4AF37';
-            } else {
-                nameInput.style.borderColor = '#3A3A3A';
-            }
+            } else { nameInput.style.borderColor = '#3A3A3A'; }
 
             if (!emailInput.value.trim()) {
-                isValid = false;
-                errorMessage = 'Please enter your email address.';
+                isValid = false; errorMessage = 'Please enter your email address.';
                 emailInput.style.borderColor = '#D4AF37';
             } else if (!isValidEmail(emailInput.value.trim())) {
-                isValid = false;
-                errorMessage = 'Please enter a valid email address.';
+                isValid = false; errorMessage = 'Please enter a valid email address.';
                 emailInput.style.borderColor = '#D4AF37';
-            } else {
-                emailInput.style.borderColor = '#3A3A3A';
-            }
+            } else { emailInput.style.borderColor = '#3A3A3A'; }
 
             if (!messageInput.value.trim()) {
-                isValid = false;
-                errorMessage = 'Please enter your message.';
+                isValid = false; errorMessage = 'Please enter your message.';
                 messageInput.style.borderColor = '#D4AF37';
-            } else {
-                messageInput.style.borderColor = '#3A3A3A';
-            }
+            } else { messageInput.style.borderColor = '#3A3A3A'; }
 
             if (!isValid) {
                 showFormMessage(errorMessage, 'error');
@@ -401,17 +368,13 @@
         msgDiv.textContent = message;
 
         var formContainer = document.querySelector('.contact-form');
-        if (formContainer) {
-            formContainer.appendChild(msgDiv);
-        }
+        if (formContainer) formContainer.appendChild(msgDiv);
 
-        setTimeout(function() {
-            if (msgDiv) msgDiv.remove();
-        }, 5000);
+        setTimeout(function() { if (msgDiv) msgDiv.remove(); }, 5000);
     }
 
     // ============================================
-    // LAZY LOAD PREPARATION
+    // LAZY LOAD
     // ============================================
     var allImages = document.querySelectorAll('img');
     allImages.forEach(function(img) {

@@ -297,7 +297,7 @@ header.scrolled { padding: 0; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
 .fade-up:nth-child(5) { transition-delay: 0.4s; }
 .fade-up:nth-child(6) { transition-delay: 0.5s; }
 
-/* ===== VISION & MISSION (used inside team section) ===== */
+/* ===== VISION CARD ===== */
 .vision-card {
     background: #2A2A2A;
     padding: 32px 28px;
@@ -450,6 +450,11 @@ header.scrolled { padding: 0; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 24px;
     margin-top: 20px;
+}
+
+/* Force 4 columns on desktop for Trusted section */
+.famous-grid.famous-grid-4 {
+    grid-template-columns: repeat(4, 1fr);
 }
 
 .famous-item {
@@ -917,7 +922,8 @@ footer {
 
     .why-grid { grid-template-columns: 1fr; }
 
-    .famous-grid {
+    /* Famous grid: 4-col class → 2 cols on mobile */
+    .famous-grid.famous-grid-4 {
         grid-template-columns: repeat(2, 1fr);
         gap: 16px;
     }
@@ -974,5 +980,8 @@ footer {
     .team-vision-bts { grid-template-columns: 1fr 1fr; gap: 30px; }
     .ceo-bts-row { grid-template-columns: 1fr 1fr; }
 
-    .famous-grid { grid-template-columns: repeat(3, 1fr); }
+    /* Famous grid: 4-col class → 3 cols on tablet */
+    .famous-grid.famous-grid-4 {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }

@@ -36,6 +36,56 @@
     }
 
     // ============================================
+    // HERO SLIDESHOW
+    // ============================================
+    (function() {
+        var slides = document.querySelectorAll('.hero-slideshow .slide');
+        var indicatorsContainer = document.getElementById('heroIndicators');
+        if (!slides.length || !indicatorsContainer) return;
+
+        var current = 0;
+        var interval = 5000;
+        var timer = null;
+
+        // Build indicators
+        slides.forEach(function(_, i) {
+            var btn = document.createElement('button');
+            btn.className = 'indicator' + (i === 0 ? ' active' : '');
+            btn.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+            btn.addEventListener('click', function() {
+                goTo(i);
+                restartTimer();
+            });
+            indicatorsContainer.appendChild(btn);
+        });
+
+        var indicators = indicatorsContainer.querySelectorAll('.indicator');
+
+        function goTo(index) {
+            slides[current].classList.remove('active');
+            indicators[current].classList.remove('active');
+            current = (index + slides.length) % slides.length;
+            slides[current].classList.add('active');
+            indicators[current].classList.add('active');
+        }
+
+        function next() {
+            goTo(current + 1);
+        }
+
+        function startTimer() {
+            timer = setInterval(next, interval);
+        }
+
+        function restartTimer() {
+            clearInterval(timer);
+            startTimer();
+        }
+
+        startTimer();
+    })();
+
+    // ============================================
     // SMOOTH SCROLLING
     // ============================================
     document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
@@ -111,7 +161,7 @@
     checkFadeUp();
 
     // ============================================
-    // VIDEO MODALS (All 4 Videos)
+    // VIDEO MODALS
     // ============================================
     var videoConfigs = [
         { triggerId: 'videoTrigger1', modalId: 'videoModal1', videoId: 'youtubeVideo1' },
@@ -153,7 +203,7 @@
         }
     });
 
-    // Close modals with Escape key
+    // Close video modals with Escape
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             var openModals = document.querySelectorAll('.video-modal[style*="display: flex"]');
@@ -184,32 +234,19 @@
         var currentGallery = [];
 
         var galleries = {
-            'annual': {
-                images: [],
-                count: 12,
-                prefix: 'annual-',
-                ext: '.jpg'
-            },
-            'documentary': {
-                images: [],
-                count: 12,
-                prefix: 'documentary-',
-                ext: '.jpg'
-            },
-            'executive': {
-                images: [],
-                count: 3,
-                prefix: 'executive-',
-                ext: '.jpg'
-            }
+            'annual': { count: 12, prefix: 'annual-', ext: '.jpg' },
+            'documentary': { count: 12, prefix: 'documentary-', ext: '.jpg' },
+            'executive': { count: 3, prefix: 'executive-', ext: '.jpg' }
         };
 
         Object.keys(galleries).forEach(function(key) {
             var g = galleries[key];
+            var arr = [];
             for (var i = 1; i <= g.count; i++) {
                 var num = i < 10 ? '0' + i : '' + i;
-                g.images.push('images/' + g.prefix + num + g.ext);
+                arr.push('images/' + g.prefix + num + g.ext);
             }
+            g.images = arr;
         });
 
         function openLightbox(galleryKey) {
@@ -273,13 +310,8 @@
             closeLightbox.addEventListener('click', closeLightboxFn);
         }
 
-        if (prevBtn) {
-            prevBtn.addEventListener('click', prevImage);
-        }
-
-        if (nextBtn) {
-            nextBtn.addEventListener('click', nextImage);
-        }
+        if (prevBtn) prevBtn.addEventListener('click', prevImage);
+        if (nextBtn) nextBtn.addEventListener('click', nextImage);
 
         document.addEventListener('keydown', function(e) {
             if (!lightboxModal.classList.contains('active')) return;
@@ -379,7 +411,7 @@
     }
 
     // ============================================
-    // LAZY LOAD PREPARATION FOR IMAGES
+    // LAZY LOAD PREPARATION
     // ============================================
     var allImages = document.querySelectorAll('img');
     allImages.forEach(function(img) {
